@@ -1,0 +1,110 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="message-grid">
+  <div *ngFor="let item of jsonData" class="message-card" (click)="navigateToUser(item)">
+    
+
+    <ng-container *ngFor="let component of item.components">
+      
+     
+      <div *ngIf="component.type === 'HEADER' && component.format === 'DOCUMENT'" class="header">
+        <a *ngIf="component.example?.header_handle?.length" [href]="component.example.header_handle[0]" target="_blank">
+          📄 Download Document
+        </a>
+      </div>
+
+     
+      <div *ngIf="component.type === 'HEADER' && component.format === 'IMAGE'" class="header">
+        <img *ngIf="component.example?.header_handle?.length" 
+             [src]="component.example.header_handle[0]" 
+             alt="Header Image" 
+             class="header-image">
+      </div>
+
+      
+      <h3 *ngIf="component.type === 'HEADER' && component.format === 'TEXT'" class="header-text">
+        {{ component.text }}
+      </h3>
+
+      
+      <p *ngIf="component.type === 'BODY'" class="body-text">
+        {{ component.text }}
+      </p>
+
+  
+      <p *ngIf="component.type === 'FOOTER'" class="footer-text">
+        {{ component.text }}
+      </p>
+
+      
+      <div *ngIf="component.type === 'BUTTONS'" class="button-group">
+        <button *ngFor="let btn of component.buttons" (click)="onButtonClick(btn)">
+          {{ btn.text }}
+        </button>
+      </div>
+
+    </ng-container>
+
+  </div>
+</div> -->
+
+
+
+
+<!-- change 4 -->
+
+
+<!-- 
+<div class="myCard">
+
+    <div class="card-container">
+        <div class="card" (click)= "navigateToUser(card)"   *ngFor="let card of cards">
+       
+          <div class="card-image">
+            <img [src]="card?.template?.components?.[0]?.parameters?.[0]?.image?.link"  />
+          </div>
+          <div class="companyInfo">
+            <h3 class="company-name">{{ card?.TEMPLATE?.content?.companyName }}</h3>
+            <p class="company-subinfo">{{ card?.content?.conpanySubInfo }}</p>
+            <div class="link mt-2">
+              <a [href]="card?.content?.applicationLink" class="apply-link" target="_blank">
+                {{ card?.content?.applicationLink }}
+              </a>
+            </div>
+          </div>
+          
+        </div >
+    </div>
+  </div> -->
+
+  <div class="myCard">
+    <div class="card-container">
+      <div class="card" (click)="navigateToUser(card)" *ngFor="let card of cards">
+        <div class="card-image">
+          <img [src]="card?.template?.components?.[0]?.parameters?.[0]?.image?.link" />
+                     <!-- <img [src]="card?.template?.components[0]?.parameters[0]?.image?.link" /> -->
+
+        </div>
+        <div class="companyInfo">
+          <h3 class="company-name">{{ card?.content?.companyName }}</h3>
+          <p class="company-subinfo">{{ card?.content?.conpanySubInfo }}</p>
+          <div class="link mt-2">
+            <a [href]="card?.content?.applicationLink" class="apply-link" target="_blank">
+              {{ card?.content?.applicationLink }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

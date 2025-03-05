@@ -1,0 +1,45 @@
+
+<!-- 
+<div joyrideStep="dashboardStep" title="Dashboard" text="This is your main dashboard.">
+  <h2>Dashboard</h2>
+</div> -->
+
+<!-- <div>
+<li>
+  
+</li>
+</div> -->
+
+
+
+
+
+<div class="chart-container">
+    <!-- Dropdowns for Month and Year -->
+    <div class="filters">
+      <!-- <select (change)="onMonthChange($event)">
+        <option *ngFor="let month of months" [value]="month" [selected]="month === selectedMonth">
+          {{ month }}
+        </option>
+      </select> -->
+
+
+      <select (change)="onMonthChange($event)">
+        <option *ngFor="let month of months" [value]="month" [selected]="month === selectedMonth">
+          {{ month }}
+        </option>
+      </select>
+      
+
+      <select (change)="onYearChange($event)">
+        <option *ngFor="let year of years" [value]="year" [selected]="year === selectedYear">
+          {{ year }}
+        </option>
+      </select>
+    </div>
+  
+    <!-- Bar Chart -->
+    <canvas id="barChart"></canvas>
+  </div>
+
+  

@@ -1,0 +1,197 @@
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <app-page-title title="Upload Data" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card custom-card d-flex flex-column">
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <div class="scrollable-content flex-grow-1">
+            <h4 class="card-title">Upload</h4>
+            <p class="card-title-desc">Fill information below</p>
+
+
+
+            <form class="needs-validation" (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+
+
+
+
+              <div class="row">
+
+
+                <div class="col-sm-6">
+                  <div class="mt-4 mb-3">
+                    <div>
+                      <label for="formFileLg" class="form-label">select excel file</label>
+                      <!-- formControlName="execelFile" -->
+                      <input class="form-control form-control-lg" id="formFileLg" type="file" id="fileInput"
+                        accept=".xls,.xlsx" (change)="handleFileUpload($event)">
+                      <small *ngIf="fileName" class="text-muted">Selected file: {{ fileName }}</small>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+
+
+            </form>
+          </div>
+
+          <div class=" sticky-footer p-3">
+            <button type="submit" class="btn btn-primary px-5" (click)="validateAndSendData()">Save</button>
+            <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+    <!-- end row -->
+
+  </div> <!-- container-fluid -->
+</div>
+
+
+
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true"
+    #errorModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Invalid Excel Format</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Please ensure your Excel file contains the following columns:</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Column</th>
+                <th>Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>NAME</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>MOBILE</td>
+                <td>Yes</td>
+              </tr>
+
+              <tr>
+                <td>CATEGORY</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>ADDRESS</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>COUNTRY_CODE</td>
+                <td>Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Loader (shown when waiting for response) -->
+<!-- <div *ngIf="loading" class="loader-overlay">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div> -->
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+
+<app-loader></app-loader>
+
+
+  <!-- Result Modal (Keep it at the end of the file) -->
+<div #resultModal class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Result</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- If numbers are not on WhatsApp, show this section ONLY -->
+        <ng-container *ngIf="modalData.notInWhatsapp.length > 0">
+          <h6 class="text-danger">These Clients Are Not Registered on WhatsApp:</h6>
+          <ul>
+            <li *ngFor="let client of modalData.notInWhatsapp">
+              {{ client.NAME }} ({{ client.MOBILE }})
+            </li>
+          </ul>
+        </ng-container>
+
+        <!-- If duplicate numbers exist, show this section ONLY -->
+        <ng-container *ngIf="modalData.duplicateNumbers.length > 0">
+          <h6 class="text-warning">Duplicate Numbers Found in Excel File:</h6>
+          <ul>
+            <li *ngFor="let client of modalData.duplicateNumbers">
+              {{ client.NAME }} ({{ client.MOBILE }})
+            </li>
+          </ul>
+        </ng-container>
+
+        <!-- Show success message ONLY if both lists are empty -->
+        <ng-container *ngIf="modalData.notInWhatsapp.length === 0 && modalData.duplicateNumbers.length === 0">
+          <h6 class="text-success">Clients Added Successfully:</h6>
+          <ul>
+            <li *ngFor="let client of modalData.clientsAdded">
+              {{ client.NAME }} ({{ client.MOBILE }})
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

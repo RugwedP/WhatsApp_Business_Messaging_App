@@ -1,0 +1,70 @@
+.scrollable-content {
+    max-height: 400px; /* Adjust height as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* Prevent scrollbar overlap with content */
+}
+
+.sticky-footer {
+    margin-top: auto; /* Push the button container to the bottom */
+    background: white;
+    text-align: center;
+    padding-bottom: 7px;
+}
+
+
+.custom-card {
+    min-height: 800px; /* Set the desired minimum height */
+    max-height: 100%; /* Optional: Adjust maximum height */
+
+    display: flex; /* Ensure proper flex behavior */
+    flex-direction: column; /* Column layout */
+  }
+  
+  .row, .col-12 {
+    height: 100%; /* Ensure the row and column expand fully */
+  }
+  
+  .card {
+    height: calc(100vh - 150px); /* Adjust the card height relative to viewport */
+  }
+  
+  .card {
+    height: auto;
+    min-height: 550px; 
+  }
+  
+
+  .card-body {
+    flex-grow: 1; /* Allow the card-body to expand */
+    display: flex;
+    flex-direction: column;
+    /* padding: 0;  */
+    padding-bottom: 0;
+}
+
+
+.card {
+    height: auto;
+    min-height: 550px;
+    display: flex; 
+    flex-direction: column; 
+}
+
+
+
+
+
+
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050; /* Ensure it's above other elements */
+}

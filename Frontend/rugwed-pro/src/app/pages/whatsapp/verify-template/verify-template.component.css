@@ -1,0 +1,68 @@
+
+.scrollable-content {
+    max-height: 400px; /* Adjust height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    padding-right: 10px; /* Ensures content doesn't cut off */
+    white-space: normal; /* Ensures text wraps properly */
+}
+.myDropdown
+{
+    outline: none;
+    
+}
+
+
+.ng-clear-wrapper
+{
+    display: none;
+}
+
+.ng-select span{
+    display: none;
+}
+.ng-clear-wrapper{
+    display: none !important;  
+
+}
+.text{
+    font-family: 'Poppins', sans-serif;  /* Optimistic-like font */
+   font-size: 16px;
+   font-weight: 700;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* .card-body {
+    padding-left: 7px;  
+    padding-right:  7px; 
+  } */
+.myFooterData
+{
+
+    font-size: 13px;
+    font-family: "Segoe UI Historic", sans-serif;
+    color: #00000073;
+}
+
+  #outsideDiv{
+    width: 278px;
+
+  }
+
+  #myCardBody
+  {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .myBodyData
+  {
+    font-size: 13.6px;
+    font-family: "Segoe UI Historic", sans-serif;
+  }
+
+  .changeBackground
+  {
+      background-color: gray;
+  }

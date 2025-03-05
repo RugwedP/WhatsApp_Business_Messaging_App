@@ -1,0 +1,136 @@
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <app-page-title title="Register Admin" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card custom-card d-flex flex-column">
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <div class="scrollable-content flex-grow-1">
+            <h4 class="card-title">Basic Information</h4>
+            <p class="card-title-desc">Fill all information below</p>
+            <form [formGroup]="productForm" >
+              <div class="row">
+                <div class="col-sm-6">
+
+
+                  <!-- below div write joyride name  -->
+                  <div >
+                  <div class="mb-3" >
+
+                    <label for="productname">Username</label>
+                    <input id="productname" name="productname" type="text" placeholder="Enter UserName"
+                      class="form-control" formControlName="username"
+                      [ngClass]="{'is-invalid': submit && form.username.errors}">
+                    <div *ngIf="submit && form.username.errors" class="invalid-feedback">
+                      <span *ngIf="form.username.errors.required">Name is required.</span>
+                    </div>
+                  </div>
+
+                </div>
+                  
+
+                  <div class="mb-3">
+                    <label for="password">Password</label>
+                    <div class="input-group auth-pass-inputgroup">
+                      <input [type]="fieldTextType ? 'text' : 'password'" class="form-control"
+                        formControlName="password" placeholder="Enter password"
+                        [ngClass]="{ 'is-invalid': submit && form.password.errors }">
+                      <button class="btn btn-light ms-0" type="button" id="password-addon"
+                        (click)="toggleFieldTextType()">
+                        <i class="mdi mdi-eye-outline"
+                          [ngClass]="{'mdi-eye-off-outline': !fieldTextType, 'mdi-eye-outline': fieldTextType}"></i>
+                      </button>
+                      <div *ngIf="submit && form.password.errors" class="invalid-feedback">
+                        <span *ngIf="form.password.errors.required">Password is required</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-group auth-pass-inputgroup">
+                      <input [type]="fieldTextType ? 'text' : 'password'" class="form-control"
+                        formControlName="confirmPassword" placeholder="Enter password"
+                        [ngClass]="{ 'is-invalid': submit && form.confirmPassword.errors }">
+                      <button class="btn btn-light ms-0" type="button" id="password-addon"
+                        (click)="toggleFieldTextType()">
+                        <i class="mdi mdi-eye-outline"
+                          [ngClass]="{'mdi-eye-off-outline': !fieldTextType, 'mdi-eye-outline': fieldTextType}"></i>
+                      </button>
+                      <div *ngIf="submit && form.confirmPassword.errors" class="invalid-feedback">
+                        <span *ngIf="form.confirmPassword.errors.required">Password is required</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="dateInput">Select Date</label>
+                    <input class="form-control border rounded" type="date" formControlName="dateField" id="dateInput"
+                      [ngClass]="{ 'is-invalid': submit && form.dateField.errors }">
+                    <div *ngIf="submit && form.dateField.errors" class="invalid-feedback">
+                      <span *ngIf="form.dateField.errors.required">Date is required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="address">Profile Name</label>
+                    <input id="address" name="manufacturername" placeholder="Enter Profile Name" type="text"
+                      class="form-control" formControlName="profilename"
+                      [ngClass]="{'is-invalid': submit && form.profilename.errors}">
+                    <div *ngIf="submit && form.profilename.errors" class="invalid-feedback">
+                      <span *ngIf="form.profilename.errors.required">Profile Name is required.</span>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Mobile Number</label>
+                    <input formControlName="mobilenumber" type="text" class="form-control"
+                      [ngClass]="{'is-invalid': submit && form.mobilenumber.errors}" placeholder="Enter Mobile Number">
+                    <div *ngIf="submit && form.mobilenumber.errors" class="invalid-feedback">
+                      <span *ngIf="form.mobilenumber.errors.required">Mobile Number is required.</span>
+                      <span *ngIf="form.mobilenumber.errors.pattern">This value should be a valid number.</span>
+                    </div>
+                  </div>
+
+                  <div class="mb-3" style="display: flex; justify-content: space-evenly;">
+                    <label for="gender">Select Gender</label>
+                    <div class="form-check">
+                      <input formControlName="gender" class="form-check-input" type="radio" name="formRadios" id="male"
+                        value="Male"      
+                        >
+                      <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="gender" class="form-check-input" type="radio" name="formRadios" id="female"
+                        value="Female"    
+                        >    
+                      <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="gender" class="form-check-input" type="radio" name="formRadios" id="other"
+                        value="Other">
+                      <label class="form-check-label" for="other">Other</label>
+                    </div>
+                  </div>
+
+                  <div *ngIf="productForm.get('gender')?.errors?.required" class="invalid-feedback">
+                    <span>Gender is required.</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+              <div class="mt-auto sticky-footer p-3">
+                <button type="submit" class="btn btn-primary px-5" (click)="validSubmit()">Save</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

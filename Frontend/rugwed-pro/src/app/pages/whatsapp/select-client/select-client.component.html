@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <app-page-title
+    title="Select Client"
+    [breadcrumbItems]="breadCrumbItems"></app-page-title>
+ 
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <ng-container class="smart">
+              <smart-grid
+                [behavior]="behavior"
+                [header]="header"
+                [appearance]="appearance"
+                [dataSource]="dataSource"
+                [columns]="columns"
+                [sorting]="sorting"
+                [selection]="selection"
+                [selection]="{ enabled: true, mode: 'multi' }"
+                [filtering]="filtering"
+                #grid
+                id="grid"
+              >
+              </smart-grid>
+            </ng-container>
+            <div
+              class="d-flex flex-wrap gap-2 mt-4 justify-content-center align-items-center"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="goToTemplateSelection()"
+              >
+                Back
+              </button>
+              <button type="submit" class="btn btn-primary" (click)="Edit()">
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<tr *ngFor="let client_ of responseTableData?.result">
+  <td>{{ client_.NAME }}</td>
+  <td>{{ client_.MOBILE }}</td>
+</tr>
+<ng-template #clientSelectionModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Client Details</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeClientSelectionModal()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Client Name</th>
+          <th>Mobile Number</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <ng-container *ngIf="responseTableData?.result?.length > 0; else noData"
+                
+                > -->
+        <tr *ngFor="let client of responseTableData?.result">
+          <td>{{ client.NAME }}</td>
+          <td>{{ client.MOBILE }}</td>
+          <td>{{ client.STATUS }}</td>
+        </tr>
+        <!-- </ng-container> -->
+        <!-- <ng-template #noData>
+              <tr>
+                <td colspan="3" class="text-center">No data available</td>
+              </tr>
+            </ng-template> -->
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="closeClientSelectionModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

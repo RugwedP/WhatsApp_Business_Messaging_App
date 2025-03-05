@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card custom-card d-flex flex-column" style="min-height: 750px;">
+          <!-- Card Body -->
+          <div class="card-body flex-grow-1 d-flex flex-column">
+            <!-- Scrollable Content -->
+            <div class="scrollable-content flex-grow-1">
+              <h4 class="card-title">Basic Information</h4>
+              <p class="card-title-desc">Fill all information below</p>
+  
+              <form [formGroup]="Form" >
+                <div class="row">
+                  <!-- Template Name Field (First Field) -->
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <label for="templateName">Template Name</label>
+                      <input id="templateName" name="templateName" type="text"
+                        placeholder="Enter Template Name" class="form-control"
+                        formControlName="name" />
+
+
+                        <div *ngIf="Form.get('name').invalid && Form.get('name').touched" class="text-danger">
+                          Template Name is required
+                        </div>
+                         
+                        
+                    </div>
+                  </div>
+  
+                  <!-- Force Next Field to New Line -->
+                  <div class="w-100"></div>
+  
+                  <!-- JSON Format Field (Second Field) -->
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <label for="jsonFormat">Enter JSON Format</label>
+                      <textarea id="jsonFormat" name="jsonFormat" placeholder="Enter JSON Data"
+                        class="form-control" formControlName="jsonData" rows="5"></textarea>
+
+
+                          <!-- Error Message for Invalid JSON -->
+        <div *ngIf="Form.get('jsonData').hasError('invalidJson') && Form.get('jsonData').touched" 
+        class="text-danger">
+        Invalid JSON format! Please check your syntax.
+      </div>
+
+                    </div>
+                  </div>
+
+
+                      <!-- Save Button (Centered & Above Footer) -->
+            <div class="p-3 text-center">
+              <button type="submit" class="btn btn-primary px-5" (click)="onSubmit()">Save</button>
+            </div>
+                </div>
+              </form>
+            </div>
+  
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

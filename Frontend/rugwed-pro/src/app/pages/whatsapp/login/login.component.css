@@ -1,0 +1,42 @@
+/* Base Styles */
+.login-container {
+    height: 550px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+  }
+  
+  .form-control {
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #212529;
+  }
+  
+  .btn {
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  
+  

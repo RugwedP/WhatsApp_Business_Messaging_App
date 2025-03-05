@@ -1,0 +1,321 @@
+<div class="container-fluid">
+    <!-- Start Page Title -->
+    <app-page-title title="Add Client"></app-page-title>
+    <!-- End Page Title -->
+
+    <div class="row">
+        <div class="col-8">
+            <div class="card custom-card d-flex flex-column">
+                <!-- Card Body -->
+                <div class="card-body flex-grow-1 d-flex flex-column">
+                    <!-- Scrollable Content Section -->
+                    <div class="scrollable-content flex-grow-1">
+                        <h4 class="card-title">Template name</h4>
+
+                        <form [formGroup]="productForm">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="mb-3">
+                                        <label for="productname">Name your template</label>
+                                        <input id="productname" name="productname" type="text"
+                                            placeholder="Enter a template name" class="form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sticky Save Button -->
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-8">
+            <div class="card custom-card d-flex flex-column">
+                <!-- Card Body -->
+                <div class="card-body flex-grow-1 d-flex flex-column">
+                    <!-- Scrollable Content Section -->
+                    <div class="scrollable-content flex-grow-1">
+                        <h4 class="card-title">Content</h4>
+                        <p class="card-title-desc">Fill in the header, body and footer sections of your template.
+                        </p>
+
+
+                        <form [formGroup]="content">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="control-label">Header</label>
+                                    <ng-select formControlName="myHeader" [items]="header" bindLabel="Name"
+                                        bindValue="value" (change)="headerChange($event)" placeholder="Select Category">
+                                    </ng-select>
+                                </div>
+
+                                <div class="mb-3" *ngIf="showTextHeader">
+                                    <label for="productname">Text</label>
+                                    <input id="productname" name="productname" formControlName="headerText" type="text"
+                                        class="form-control" [(ngModel)]="textData" maxlength="60" />
+
+                                    <small class="text-muted">{{ content.value.headerText.length
+                                        }}/60</small>
+
+                                </div>
+
+
+                                <div class="col-sm-12" *ngIf="showImageHeader">
+                                    <div class="mb-3">
+                                        <div>
+                                            <label for="formFileLg" class="form-label">Image</label>
+                                            <!-- formControlName="execelFile" -->
+                                            <input class="form-control form-control-lg" id="formFileLg" type="file"
+                                                id="fileInput" accept=".jpg,  .png" (change)="onFileSelected($event)">
+                                            <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+                                            <small *ngIf="fileName" class="text-muted">Selected file: {{ fileName
+                                                }}</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-12" *ngIf="showDocumentHeader">
+                                    <div class="mb-3">
+                                        <div>
+                                            <label for="formFileLg" class="form-label">Document</label>
+                                            <!-- formControlName="execelFile" -->
+                                            <input class="form-control form-control-lg" id="formFileLg" type="file"
+                                                id="fileInput" accept=".pdf" (change)="onFileSelected2($event)">
+                                            <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+                                            <small *ngIf="fileName" class="text-muted">Selected file: {{ fileName
+                                                }}</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="mb-3">
+                                        <label for="jsonFormat">Body</label>
+
+
+                                        <textarea id="jsonFormat" name="jsonFormat"  (input)="onBodyInputChange($event)"
+                                            placeholder="Enter text in English" class="form-control"
+                                            formControlName="bodyDataText" rows="5" [(ngModel)]="bodyData"
+                                            maxlength="1024">
+                                        </textarea>
+                                        <div class="d-flex align-items-center justify-content-between mt-1">
+                                            <small class="text-muted">{{ bodyData.length }}/1024</small>
+                                            <div class="d-flex gap-2">
+                                                <button type="button" class="btn btn-light" (click)="boldButtonClik()">
+                                                    <b>B</b>
+                                                </button>
+                                                <button type="button" class="btn btn-light" (click)="italicButtonClik()">
+                                                    <span>𝐼</span>
+                                                </button>
+                                            </div>
+
+
+
+
+
+                                            <!-- Error Message for Invalid JSON -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productname">Footer (Optional)</label>
+                                    <input id="productname" name="productname" type="text" class="form-control"
+                                        formControlName="footer" [(ngModel)]="footerData" maxlength="60" />
+                                    <small class="text-muted">{{ content.value.footer.length
+                                        }}/60</small>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sticky Save Button -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-8">
+            <div class="card custom-card d-flex flex-column">
+                <!-- Card Body -->
+                <div class="card-body flex-grow-1 d-flex flex-column">
+                    <!-- Scrollable Content Section -->
+                    <div class="scrollable-content flex-grow-1">
+                        <h4 class="card-title">Buttons (Optional)</h4>
+                        <p class="card-title-desc">Create buttons that let customers respond to your message or take
+                            action.
+                        </p>
+
+
+                        <form [formGroup]="buttonsArea">
+                            <div class="row">
+
+                                <!-- <div class="mb-3">
+                                    <label class="control-label">Add Button</label>
+                                    <ng-select formControlName="myHeader" [items]="buttons" bindLabel="Name"
+                                        bindValue="value" (change)="handleButtonChange($event)"
+                                        class="col-3"
+                                        placeholder="Select Button" > <ng-template ng-label-tmp>
+                                            <i class="bi bi-plus-lg"></i> Add Button
+                                        </ng-template>  </ng-select>
+                                </div> -->
+                                <div class="myDropdown mb-3">
+                                    <label class="control-label">Add Button</label>
+                                    <ng-select formControlName="addButton" [items]="buttons"
+                                        class="myDropdown ng-select" placeholder="Select Button" [clearable]="false"
+                                        [searchable]="false">
+
+                                        <!-- 🔹 Force the label to always show "Add Button" -->
+                                        <ng-template ng-label-tmp let-item="item">
+                                            Add Button
+                                        </ng-template>
+
+                                        <!-- 🔹 Custom dropdown item template -->
+                                        <ng-template ng-option-tmp let-item="item">
+                                            <div [class.text-muted]="item.disabled"
+                                                (click)="handleButtonChange(item.value)">
+                                                <strong>{{ item.Name.split('-')[0].trim() }}</strong><br />
+                                                <small class="text-muted">{{ item.Name.split('-')[1]?.trim() }}</small>
+                                            </div>
+                                        </ng-template>
+
+                                    </ng-select>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <div class="border p-3 rounded" *ngIf="showButtonArea">
+                                        <div class="row">
+                                            <!-- Button Text -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Button text</label>
+                                                <input type="text" class="form-control" formControlName="buttonText"
+                                                    maxlength="25">
+                                                <small class="text-muted">{{ buttonsArea.value.buttonText.length
+                                                    }}/25</small>
+                                            </div>
+
+                                            <!-- Website URL -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Website URL</label>
+                                                <input type="text" class="form-control" formControlName="websiteUrl"
+                                                    maxlength="2000" placeholder="https://www.example.com">
+                                                <small class="text-muted">{{ buttonsArea.value.websiteUrl.length
+                                                    }}/2000</small>
+                                            </div>
+
+                                            <!-- Remove Button -->
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    (click)="removeCallToAction()">✖</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <div class="border p-3 rounded" *ngIf="showSecondButtonArea">
+                                        <div class="row">
+                                            <!-- Button Text -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Button text</label>
+                                                <input type="text" class="form-control" formControlName="buttonText"
+                                                    maxlength="25">
+                                                <small class="text-muted">{{ buttonsArea.value.buttonText.length
+                                                    }}/25</small>
+                                            </div>
+
+                                            <!-- Website URL -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Website URL</label>
+                                                <input type="text" class="form-control" formControlName="websiteUrl"
+                                                    maxlength="2000" placeholder="https://www.example.com">
+                                                <small class="text-muted">{{ buttonsArea.value.websiteUrl.length
+                                                    }}/2000</small>
+                                            </div>
+
+                                            <!-- Remove Button -->
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    (click)="removeSecondButtonArea()">✖</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <div class="border p-3 rounded" *ngIf="showCallButtonArea">
+                                        <div class="row">
+                                            <!-- Button Text -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Button text</label>
+                                                <input type="text" class="form-control" formControlName="buttonText"
+                                                    maxlength="25">
+                                                <small class="text-muted">{{ buttonsArea.value.buttonText.length
+                                                    }}/25</small>
+                                            </div>
+
+                                            <!-- Website URL -->
+                                            <div class="col-md-5">
+                                                <label class="form-label fw-bold">Phone Number</label>
+                                                <input type="text" class="form-control" formControlName="websiteUrl"
+                                                    maxlength="10" placeholder="https://www.example.com">
+                                                <small class="text-muted">{{ buttonsArea.value.websiteUrl.length
+                                                    }}/10</small>
+                                            </div>
+
+                                            <!-- Remove Button -->
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    (click)="removeCallButtonArea()">✖</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sticky Save Button -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="position-absolute top-1 end-0 card custom-card d-flex flex-column shadow" style="width: 280px; margin-right: 117px;" [ngStyle]="{'background-color':changeColor}">
+            <div class="flex-grow-1 d-flex flex-column" id="myCardBody" style="width: 256px; background-color: aqua;">
+
+                <span class="text" *ngIf="showTextHeader">{{textData}}</span>
+                <img src="https://www.creativefabrica.com/wp-content/uploads/2021/06/28/Image-photo-icon-Graphics-13989898-1.jpg"
+                    alt="" *ngIf="showImageHeader" style="margin-bottom: 5px; border-radius: 4px; margin-top: 4px;">
+                <span class="myBodyData"  [innerHTML]="formattedBodyData">{{bodyData}}</span>   
+                <span class="myFooterData">{{footerData}}</span>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

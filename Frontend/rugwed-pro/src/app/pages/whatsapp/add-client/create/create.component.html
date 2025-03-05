@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <!-- Start Page Title -->
+  <app-page-title title="Add Client" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- End Page Title -->
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card custom-card d-flex flex-column">
+        <!-- Card Body -->
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <!-- Scrollable Content Section -->
+          <div class="scrollable-content flex-grow-1">
+            <h4 class="card-title">Basic Information</h4>
+            <p class="card-title-desc">Fill all information below</p>
+
+
+            <!-- <button (click)=" startTour1()">
+              start1
+             </button> -->
+            <form [formGroup]="productForm" (ngSubmit)="validSubmit()">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3" >
+                    <label for="productname">Client Name</label>
+                    <input
+                      id="productname"
+                      name="productname"
+                      type="text"
+                      placeholder="Client Name"
+                      class="form-control"
+                      formControlName="name"
+                      [ngClass]="{'is-invalid': submit && form.name.errors}"
+                    />
+                    @if (submit && form.name.errors) {
+                    <div class="invalid-feedback">
+                       @if (form.name.errors.required) {
+                      <span>Name is required.</span>
+                      }
+                    </div>
+                    }
+                  </div>
+                  <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input
+                      id="address"
+                     
+                      placeholder="Enter Address"
+                      type="text"
+                      class="form-control"
+                      formControlName="address"
+                      [ngClass]="{'is-invalid': submit && form.address.errors}"
+                    />
+                    @if (submit && form.address.errors) {
+                    <div class="invalid-feedback">
+                      @if (form.address.errors.required) {
+                      <span>Address is required.</span>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label class="control-label">Category</label>
+                    <ng-select
+                      formControlName="category"
+                      [items]="category"
+                      bindLabel="NAME"
+                      bindValue="CODE"
+                  
+                      placeholder="Select Category"
+                    ></ng-select>
+                  </div>
+
+                
+
+
+                  <div class="mb-3">
+                    <label class="form-label">Mobile Number</label>
+                    <div class="d-flex align-items-center">
+                      <ng-select
+                        placeholder="91"
+                        formControlName="countryCode"
+                        [items]="['91']"
+                        bindLabel="label"
+                        bindValue="value"
+                        class="me-2"
+                        [clearable]="false"
+                      >
+                      </ng-select>
+                  
+                      <input
+                        formControlName="number"
+                        type="text"
+                        class="form-control"
+                        [ngClass]="{'is-invalid': submit && form.number?.errors}"
+                        placeholder="Enter Mobile Number"
+                      />
+                    </div>
+                  
+                    <!-- Bootstrap Validation Messages (Corrected) -->
+                    @if (submit) {
+                      @if (form.number?.errors?.required) {
+                        <div class="invalid-feedback d-block">
+                          <span>Mobile Number is required.</span>
+                        </div>
+                      }
+                      @if (form.number?.errors?.pattern) {
+                        <div class="invalid-feedback d-block">
+                          <span>Please enter a valid 10-digit Indian mobile number (starting with 6-9).</span>
+                        </div>
+                      }
+                    }
+                  </div>
+                  
+                  
+                   
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sticky Save Button -->
+          <div class="mt-auto sticky-footer p-3">
+            <button
+              type="submit"
+              class="btn btn-primary px-5"
+              (click)="validSubmit()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+
+<app-loader></app-loader>
+
+

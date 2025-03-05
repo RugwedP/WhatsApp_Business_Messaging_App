@@ -1,0 +1,113 @@
+
+<div class="container-fluid">
+    <app-page-title
+    
+      [breadcrumbItems]="breadCrumbItems"></app-page-title>
+   
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <form [formGroup]="productForm">
+                <div class="col-sm-4"  *ngIf="isCategoryShowing">
+                  <div class="mb-5 d-flex align-items-center gap-2" >
+                    <label for="productname" class="me-2">Category</label>
+                    <input
+                      id="productname"
+                      name="productname"
+                      type="text"
+                      placeholder="Enter Category Name"
+                      class="form-control"
+                      formControlName="name"
+                     
+                      
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      (click)="saveCategory()"
+                      *ngIf="isDisplay"
+                    >
+                     Add
+                    </button>
+
+                    <button
+                    type="submit"
+                    class="btn btn-primary"
+                    (click)="updateCategory()"
+                    *ngIf="showEditBtn"
+                  >
+                   Edit
+                  </button>
+                  </div>
+                </div>
+                
+            </form>
+              <ng-container class="smart">
+              
+                <div class="container rounded">
+                  <div class="container" >
+                    <!-- Recent Issues Table -->
+                    <div class="card mt-4">
+                      <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2 bg-dark">
+                        <h5 class="mb-0 text-light">Category Name</h5>
+                        <div class="btn-group" style="gap: 5px;">
+                          <button type="button" class="btn py-2 px-2" style="background-color: rgb(180, 180, 244); font-weight: 400; border-radius: 10px;" (click) = "addCategory()" >Add</button>
+                          <button type="button" class="btn py-2 px-2" style="background-color: rgb(180, 180, 244); font-weight: 400; border-radius: 10px;" (click) = "Edit()" >Edit</button>
+                          <button type="button" class="btn  py-2 px-2" style="background-color: rgb(180, 180, 244); font-weight: 400; border-radius: 10px;" (click) = "deleteCategory()"  >Delete</button>
+                          
+                          <!-- <div class="d-flex align-items-center ms-2 menu" style="cursor: pointer;">
+                            <img (click)="openMenu()" style="width: 20px;" src="../assets/icons/more.png" alt="">
+                            <div [hidden]="!displayMenu" class="menuChilds">
+                              <button>Sort By</button>
+                              <button>Filter</button>
+                            </div>
+                          </div> -->
+                        </div>
+            
+                      </div>
+                      <div class="card-body" style="background-color: hsl(0, 0%, 17%) ; padding: 0; border-radius: 10px;">
+                          <div class="row"> 
+                                <div class="container">
+                                        <smart-grid [behavior]="behavior"
+                                        [header]="header"
+                                        [appearance]="appearance"
+                                        [dataSource]="dataSource"
+                                        [columns]="columns"
+                                        [sorting]="sorting"
+                                        [selection]="selection"
+                                        [selection]="{ enabled: true, mode: 'one' }"
+                                        [filtering]="filtering"
+                                        #grid
+                                        
+                                            id="grid" style="width: 100%;">
+                                        </smart-grid>
+                                </div>
+                          </div>
+                          <!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <!-- <div
+                class="d-flex flex-wrap gap-2 mt-4 justify-content-center align-items-center"
+              >
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                 
+                >
+                  Edit
+                </button>
+                <button type="submit" class="btn btn-primary" >
+                Delete
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

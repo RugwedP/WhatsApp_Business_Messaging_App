@@ -1,0 +1,100 @@
+ <!-- <div class="registration-container p-5">
+    <div class="d-flex justify-content-center">
+      <h4>Add New User</h4>
+    </div>
+    <form [formGroup]="example_form">
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username">
+        <label for="username">Password</label>
+        <input type="text" id="username" formControlName="password">
+    </form>
+  
+      Submit Button
+      <div class="d-grid">
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Add User</button>
+      </div>
+</div> -->
+  
+
+<!-- HTML -->
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;" >
+    <!-- Main Content -->
+      <div class="login-container bg-white rounded-3 shadow-sm p-4 p-md-5">
+        <!-- Logo -->
+        <div class="text-center mb-4">
+          <!-- <img src="assets/ccpl_logo.png" alt="Company Logo" class="img-fluid mb-3" style="max-height: 60px; margin-right: 230px;"> -->
+        </div>
+  
+        <!-- Header -->
+        <div class="text-start mb-4 align-item-start">
+          <h4 class="fw-bold heading">Sign In</h4>
+        </div>
+  
+        <!-- Form -->
+        <form [formGroup]="example_form" >
+          <!-- Username Field -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <div class="input-group">
+              <input type="text" id="username" formControlName="username"  class="form-control" placeholder="Enter username" required>
+            </div>
+          </div>
+  
+          <!-- Password Field -->
+          <div class="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <!-- <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter password" required> -->
+              <div class="input-group">
+                <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" class="form-control" placeholder="Enter password" required>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-secondary form-control mt-0" (click)="togglePasswordVisibility()">
+                    <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark text-light py-2" (click)="onSubmit()">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+  
+    <!-- Footer -->
+
+</div>
+  <footer class=" bg-light text-muted py-4 mt-auto">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 text-center text-md-center space">
+          <p class="mb-0">&copy; 2025 Compserv Consultants pvt ltd. all rights reserved.</p>
+        </div>
+    </div>
+    </div>
+  </footer>
+                
+                
+               
+                 
+                
+          
+
+          
+  
+         
+           
+           
+           
+           
+          
+  
+  
+    
+  
+    
+
